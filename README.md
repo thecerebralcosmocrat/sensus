@@ -1,82 +1,41 @@
-\# Confidence-Weighted Sentiment Analysis
+# Confidence-Weighted Sentiment Analysis
 
+A sentiment classifier that adjusts prediction confidence based on lexical richness — type-token ratio and token count — built on top of VADER with sklearn evaluation and matplotlib visualizations.
 
-
-A sentiment classifier that adjusts its confidence based on how informative the input text is.
-
-
-
-\## Problem
-
-
+## Problem
 
 Standard sentiment tools are equally confident whether the input is a single repeated word or a detailed paragraph. This project adds a weighting layer that lowers confidence for short or repetitive text.
 
+## How It Works
 
+1. Runs sentiment scoring using VADER
+2. Computes two richness metrics per input — token count and type-token ratio (TTR)
+3. Scales the confidence score down for low-richness text
+4. Compares weighted vs baseline accuracy on a labeled dataset
 
-\## How It Works
-
-
-
-1\. Runs sentiment scoring using VADER
-
-2\. Computes two richness metrics per input — token count and type-token ratio (TTR)
-
-3\. Scales the confidence score down for low-richness text
-
-4\. Compares weighted vs baseline accuracy on a labeled dataset
-
-
-
-\## Setup
-
-
+## Setup
 
 ```bash
-
 pip install vaderSentiment scikit-learn matplotlib
-
 ```
 
-
-
-\## Usage
-
-
+## Usage
 
 ```bash
-
-python sentiment\_analysis.py
-
+python sentiment_analysis.py
 ```
 
+Outputs a results table in the terminal and saves `sentiment_results.png` with four plots — confusion matrices, a richness vs sentiment scatter, and a per-sample TTR bar chart.
 
-
-Outputs a results table in the terminal and saves a `sentiment\_results.png` with four plots — confusion matrices, a richness vs sentiment scatter, and a per-sample TTR bar chart.
-
-
-
-\## Results
-
-
+## Results
 
 | Model | Accuracy |
-
-|---|---|
-
+| --- | --- |
 | Baseline VADER | see terminal output |
-
 | Confidence-Weighted | see terminal output |
 
+## Dependencies
 
-
-\## Dependencies
-
-
-
-\- `vaderSentiment` — sentiment scoring
-
-\- `scikit-learn` — evaluation metrics
-
-\- `matplotlib` — visualizations
-
+- `vaderSentiment` — sentiment scoring
+- `scikit-learn` — evaluation metrics
+- `matplotlib` — visualizations
